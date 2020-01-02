@@ -1,0 +1,16 @@
+version: '3'
+services:
+  nginx:
+    restart: always
+    image: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./log:/var/log/nginx
+      - ./html:/usr/share/nginx/html
+      - ./conf.d:/etc/nginx/conf.d
+  backend:
+    restart: always
+    image: koa2_backend
+    ports:
+      - "3000:3000"
