@@ -11,9 +11,6 @@ services:
       - ./conf.d:/etc/nginx/conf.d
   backend:
     restart: always
-    build:
-      context: ../demo01
-      dockerfile: Dockerfile
+    image: koa2_backend
     ports:
       - "3000:3000"
-  
