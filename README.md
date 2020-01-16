@@ -10,6 +10,14 @@
 
 ### Demo05:编排三个项目(前端，后端，数据库)
 
+### Demo06:基于Demo05,但是前端用nginx代理请求
+
+### Demo07:基于Demo06,前端nginx加上负载均衡
+
+## 疑问
+
+### docker-compose 如何实时打包，而不用docker缓存
+
 ## Tips
 
 ### nginx各个文件在容器中相关位置分别是： 

@@ -1,0 +1,41 @@
+version: "3"
+services:
+  nginx:
+    restart: always
+    image: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./log:/var/log/nginx
+      - ./html:/usr/share/nginx/html
+      - ./conf.d:/etc/nginx/conf.d
+  backend_a:
+    restart: always
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+  backend_b:
+    restart: always
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"
+    depends_on:
+      - mysql
+  mysql:
+    restart: always
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root #root管理员用户密码
+      MYSQL_USER: test #创建test用户
+      MYSQL_PASSWORD: test #设置test用户的密码
+    volumes:
+      - "./.mysql-data/db:/var/lib/mysql"
+      - "./conf/conf.d:/etc/mysql/conf.d"
